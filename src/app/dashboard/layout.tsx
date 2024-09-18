@@ -11,7 +11,7 @@ const DashboardLayout = ({
     <div className="flex h-screen bg-background dark:bg-gray-900">
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden">
-        <TopNav />
+        <TopNav shouldHideLogo />
         <main className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-background p-6 dark:bg-gray-900">
           {children}
         </main>

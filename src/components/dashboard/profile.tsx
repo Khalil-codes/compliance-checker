@@ -15,6 +15,7 @@ import { AvatarFallback } from "../ui/avatar";
 import { UserResponse } from "@supabase/supabase-js";
 import { getInitials } from "@/lib/utils";
 import { logout } from "@/app/(auth)/actions";
+import { User } from "lucide-react";
 
 type Props = {
   user: NonNullable<UserResponse["data"]["user"]>;
@@ -41,7 +42,9 @@ const Profile = ({ user }: Props) => {
               />
             )} */}
             <AvatarFallback className="w-full">
-              {getInitials(user.user_metadata.name || "A")}
+              {getInitials(
+                user.user_metadata.name || user.user_metadata.full_name
+              ) || <User size={16} />}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -50,7 +53,9 @@ const Profile = ({ user }: Props) => {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {user.user_metadata.name || "User"}
+              {user.user_metadata.name ||
+                user.user_metadata.full_name ||
+                "User"}
             </p>
             <p className="text-muted-foreground text-xs leading-none">
               {user.email}

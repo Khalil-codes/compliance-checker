@@ -4,12 +4,19 @@ import Profile from "./profile";
 import { Suspense } from "react";
 import { Skeleton } from "../ui/skeleton";
 
-export function TopNav() {
+type Props = {
+  shouldHideLogo?: boolean;
+};
+
+export function TopNav({ shouldHideLogo = false }: Props) {
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-background px-6 dark:bg-gray-800/40">
       <div className="flex flex-1 items-center justify-between">
-        {/* <h1 className="text-lg font-semibold">Supabase Compliance Checker</h1> */}
-        <div />
+        {!shouldHideLogo ? (
+          <h1 className="text-lg font-semibold">Supabase Compliance Checker</h1>
+        ) : (
+          <div />
+        )}
         <div className="flex items-center gap-4">
           <ModeToggle />
           <Suspense
