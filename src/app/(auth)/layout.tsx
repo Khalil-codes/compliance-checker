@@ -1,4 +1,4 @@
-import { TopNav } from "@/components/dashboard/top-nav";
+import Header from "@/components/header";
 
 export default function AuthLayout({
   children,
@@ -7,7 +7,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-background dark:bg-gray-900">
-      <TopNav />
+      <Header />
       <main className="flex flex-1 flex-col">{children}</main>
     </div>
   );

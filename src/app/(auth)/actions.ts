@@ -55,3 +55,39 @@ export const logout = async () => {
   revalidatePath("/", "layout");
   redirect("/login/");
 };
+
+export const enrollMFA = async (phone: string) => {
+  const supabase = createClient();
+
+  const { data, error } = await supabase.auth.mfa.enroll({
+    factorType: "phone",
+    phone,
+    friendlyName: "Phone",
+  });
+
+  console.log(data, error);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data.id;
+};
+
+export const verifyMFA = async (id: string, code: string) => {
+  const supabase = createClient();
+
+  const { data, error } = await supabase.auth.mfa.challengeAndVerify({
+    code,
+    factorId: id,
+  });
+
+  console.log(data);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/dashboard");
+};
