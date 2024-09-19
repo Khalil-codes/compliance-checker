@@ -23,7 +23,6 @@ export default UsersPage;
 
 const UsersTable = async () => {
   const users = await getUsers();
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return <UserTable users={users} />;
 };
