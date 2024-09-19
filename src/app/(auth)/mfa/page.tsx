@@ -85,7 +85,7 @@ export default function MFAPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex flex-1 flex-col items-center justify-center bg-background">
       <Card className="w-[350px]">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Set up MFA</CardTitle>

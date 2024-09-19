@@ -16,6 +16,7 @@ import { UserResponse } from "@supabase/supabase-js";
 import { getInitials } from "@/lib/utils";
 import { logout } from "@/app/(auth)/actions";
 import { User } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
   user: NonNullable<UserResponse["data"]["user"]>;
@@ -63,6 +64,17 @@ const Profile = ({ user }: Props) => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {user.factors?.some((f) => f.status === "verified") || true ? (
+          <DropdownMenuLabel>
+            <div className="text-center text-green-500">Secured</div>
+          </DropdownMenuLabel>
+        ) : (
+          <DropdownMenuItem asChild>
+            <Button variant="ghost" className="w-full" size={"sm"} asChild>
+              <Link href="/mfa">Secure your account</Link>
+            </Button>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Button
             variant="ghost"
